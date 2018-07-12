@@ -1,0 +1,8 @@
+png(file = "plot1.png", width = 480, height = 480)
+a <- read.delim("household_power_consumption.txt", sep = ";", na.strings = "?")
+library(lubridate)
+a[ ,"Date"] <- dmy(a[ ,"Date"])
+a[ ,"Time"] <- hms(a[ ,"Time"])
+c <- subset(a, a[ , "Date"] == "2007-02-01" | a[ , "Date"] == "2007-02-02")
+hist(c$Global_active_power, col = "red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)")
+dev.off()
